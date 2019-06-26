@@ -1,29 +1,22 @@
 # hotspot-image
 
-## Project setup
+## 简介
+
+[image-hot-spot](https://mochen07.github.io/image-hot-spot/) 基于vue 3.0 和 element-ui实现图片热区功能demo
+
+[预览](https://mochen07.github.io/image-hot-spot/)
+
+## 装包
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 启动
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
+### 打包
 ```
 yarn run build
 ```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     skinChange(item) {
-      console.log(item)
       this.$emit('skinChange', item)
     }
   }

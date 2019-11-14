@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import EmojiData from './emoji.json'
+import EmojiData from './native-emoji'
 export default {
   name: 'EmojiContainer',
   data() {

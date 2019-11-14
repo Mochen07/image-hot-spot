@@ -15,6 +15,18 @@ export default new Router({
       path: '/preview',
       name: 'preview',
       component: () => import('@/components/HotspotImage/Main/ShowPage.vue')
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/views/test/test.vue'),
+      children: [
+        {
+          path: 'le-table-main',
+          name: 'le-table-main',
+          component: () => import('@/views/test/pages/el-table-main.vue')
+        }
+      ]
     }
   ]
 })

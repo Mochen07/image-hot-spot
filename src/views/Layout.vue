@@ -1,11 +1,7 @@
 <template>
   <div class="layout">
-    <div class="top">
-      1
-    </div>
-    <div class="left">
-      1
-    </div>
+    <div class="top" />
+    <div class="left" />
     <div class="center">
       <OperationFloor ref="operationFloor" />
     </div>
@@ -47,11 +43,11 @@ export default {
   background: pink;
   display: grid;
   grid-template-columns: 1fr 1000px 1fr;
+  background: linear-gradient(90deg, #83a4d4, #b6fbff);
   .top{
     grid-column-start: 1;
     grid-column-end: 4;
-    height: 200px;
-    background: #409EFF;
+    height: 70px;
   }
   .right{
     place-self: start center;
@@ -62,8 +58,9 @@ export default {
       border-radius: 3px;
       text-align: center;
       line-height: 40px;
-      background: #78909C;
+      background: rgba(#3a7bd5, 0.6);
       margin: 10px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
     }
     >div:hover{
       opacity: 0.9;

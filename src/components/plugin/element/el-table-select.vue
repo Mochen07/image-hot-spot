@@ -1,16 +1,15 @@
 <!--
-@Description: 封装element table组件
+@Description: 封装element table select组件
 @Last-edit-date: 2019.11.14
 @Easy o.o <<<<<<<
 <ElTableC
-	:data="tableData"
-	:operationCustomLength="1.5"
-	:columns="tableColumns"
-	:isSelection="true"
-	:operation="['check']"
-	:total="total"
-	@handleCheck="handleCheck"
-	@handleCurrentChange="handleCurrentChange"
+  :columns="tableColumns"
+  :data="tableData"
+  :operation="['check']"
+  :operation-custom-length="2"
+  :total="total"
+  @handleCheck="handleCheck"
+  @handleCurrentChange="handleCurrentChange"
 />
 -->
 <template>
@@ -51,6 +50,7 @@
           :key="index"
           :label="column.label"
           :prop="column.prop"
+          :width="column.width"
           :class-name="column.className"
           align="center"
         />
@@ -81,6 +81,7 @@
             v-if="operationGroup('custom')"
             style="display:inline-block;"
           >
+            <!--eslint-disable-->
             <el-button
               v-for="(i,index) in customList"
               v-if="!i.condition || i.condition.value.indexOf(scope.row[i.condition.key]) >= 0"
@@ -98,6 +99,7 @@
     </el-table>
 
     <el-pagination
+      v-if="isPagination"
       background
       :current-page="currentPage"
       :page-sizes="pageSizes"
@@ -113,11 +115,11 @@
 
 <script>
 export default {
-  name: 'ElTableContainer',
+  name: 'ElTableSelect',
   props: {
     /*
-		* 表格
-		* */
+    * 表格
+    * */
     // 表格展示列
     columns: {
       type: Array,
@@ -146,12 +148,12 @@ export default {
     },
 
     /*
-		* 分页
-		* */
+    * 分页
+    * */
     // 是否显示
     isPagination: {
       type: Boolean,
-      default: false
+      default: true
     },
     total: {
       type: Number,
@@ -175,7 +177,7 @@ export default {
     // total 数据总量, sizes 每页面数量组, prev 上一页, pager, next 下一页, jumper 页面跳转
     layout: {
       type: String,
-      default: 'sizes, prev, pager, next, jumper'
+      default: 'prev, pager, next, jumper'
     }
   },
   data() {
@@ -193,8 +195,8 @@ export default {
   },
   methods: {
     /*
-		* 表格
-		* */
+    * 表格
+    * */
     // 筛选行的操作
     operationGroup(affix) {
       if (affix === 'custom') {
@@ -248,8 +250,8 @@ export default {
     },
 
     /*
-		* 分页
-		* */
+    * 分页
+    * */
     handleSizeChange(num) {
       this.$emit('handleSizeChange', num)
     },
@@ -261,11 +263,11 @@ export default {
 </script>
 
 <style scoped lang="scss" ref="stylesheet/scss">
-.el-table-container{
-	padding-bottom: 5em;
-	.el-pagination-c{
-		float: right;
-		margin-top: 1.5em;
-	}
-}
+  .el-table-container{
+    padding-bottom: 5em;
+    .el-pagination-c{
+      float: right;
+      margin-top: 1.5em;
+    }
+  }
 </style>

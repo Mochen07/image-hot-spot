@@ -24,6 +24,8 @@
       size="small"
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      @select="handleSelect"
+      @select-all="handleSelectAll"
     >
       <!--多选列-->
       <el-table-column
@@ -184,7 +186,8 @@ export default {
     return {
       getRowKeys(row) {
         return row.index
-      }
+      },
+      cacheSelectData: []
     }
   },
   computed: {
@@ -236,9 +239,19 @@ export default {
     handleCheck(index, row) {
       this.$emit('handleCheck', index, row)
     },
-    // 全选事件
+    // 选中改变事件
     handleSelectionChange(val) {
       this.$emit('handleSelectionChange', val)
+    },
+    // 单个选中事件
+    handleSelect(list) {
+      this.cacheSelectData[this.currentPage] = list
+      this.$emit('handleSelect', list)
+    },
+    // 全选事件
+    handleSelectAll(list) {
+      this.cacheSelectData[this.currentPage] = list
+      this.$emit('handleSelect', list)
     },
     // 单行选中
     setSelection(row, bool) {
@@ -247,6 +260,20 @@ export default {
     // 清空选中
     clearSelection() {
       this.$refs.tableGroup.clearSelection()
+    },
+    echoSelection(currentPageSelectList) {
+      if (currentPageSelectList) {
+        const _list = this.data.filter(row => {
+          return currentPageSelectList.some(item => {
+            return item.index === row.index
+          })
+        })
+        _list.forEach(row => {
+          this.setSelection(row)
+          // or
+          // this.$refs.tableGroup.toggleRowSelection(row)
+        })
+      }
     },
 
     /*
@@ -257,6 +284,11 @@ export default {
     },
     handleCurrentChange(page) {
       this.$emit('handleCurrentChange', page)
+      // !!!!
+      this.currentPage = page
+      setTimeout(() => {
+        this.echoSelection(this.cacheSelectData[page])
+      }, 500)
     }
   }
 }

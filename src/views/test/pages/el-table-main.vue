@@ -18,10 +18,9 @@
         :columns="tableColumns"
         :data="tableData"
         :operation="['check']"
-        :operation-custom-length="2"
+        :is-selection="true"
         :page-size="5"
         :total="total"
-        @handleCheck="handleCheck"
         @handleCurrentChange="handleCurrentChange"
       />
     </el-dialog>
@@ -109,6 +108,7 @@ export default {
   methods: {
     handleCheck() {
       this.$message.success('点击了查看')
+      this.dialogTableVisible = !this.dialogTableVisible
     },
     handleCurrentChange(page) {
       this.$message.success(`当前第${page}页面`)

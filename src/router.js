@@ -22,8 +22,8 @@ export default new Router({
       component: () => import('@/views/test/test.vue'),
       children: [
         {
-          path: 'le-table-main',
-          name: 'le-table-main',
+          path: 'el-table-main',
+          name: 'el-table-main',
           component: () => import('@/views/test/pages/el-table-main.vue')
         }
       ]

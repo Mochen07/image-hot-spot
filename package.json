@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "homepage": "https://[Mochen07].github.io/image-hot-spot",
+  "homepage": "https://Mochen07.github.io/image-hot-spot",
   "dependencies": {
     "core-js": "^2.6.5",
     "element-ui": "^2.4.5",

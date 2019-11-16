@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <el-card>
+      <div slot="header">
+        <span>El-Table组件封装</span>
+      </div>
       <ElTableMain
         :columns="tableColumns"
         :data="tableData"
@@ -13,7 +16,7 @@
       />
     </el-card>
 
-    <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
+    <el-dialog title="学生成绩" :visible.sync="dialogTableVisible">
       <ElTableSelect
         :columns="tableColumns"
         :data="tableData"

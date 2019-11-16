@@ -341,7 +341,7 @@ export default {
       margin-top: 1.5em;
     }
     .el-row-select{
-      padding-top: 6em;
+      margin-top: 6em;
       .el-col-select{
         text-align: center;
       }

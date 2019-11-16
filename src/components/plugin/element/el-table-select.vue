@@ -324,10 +324,11 @@ export default {
         return item !== null && typeof item === 'object'
       })
       this.$emit('handleConfirm', _AllSelectData)
+      this.cacheSelectData = []
     },
     // 取消
     handleCancel() {
-      delete this.cacheSelectData
+      this.cacheSelectData = []
       this.$emit('handleCancel')
     }
   }

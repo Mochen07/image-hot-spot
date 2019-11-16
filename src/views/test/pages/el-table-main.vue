@@ -21,14 +21,17 @@
         :is-selection="true"
         :page-size="5"
         :total="total"
+        :judge-value="'index'"
         @handleCurrentChange="handleCurrentChange"
+        @handleConfirm="handleConfirm"
+        @handleCancel="handleCancel"
       />
     </el-dialog>
   </div>
 </template>
 
 <script>
-import ElTableMain from '@/components/plugin/element/el-table-man'
+import ElTableMain from '@/components/plugin/element/el-table-main'
 import ElTableSelect from '@/components/plugin/element/el-table-select'
 export default {
   name: 'Container',
@@ -114,6 +117,18 @@ export default {
       this.$message.success(`当前第${page}页面`)
       const a = JSON.parse(JSON.stringify(this.totalData))
       this.tableData = a.splice((page - 1) * 5, 5)
+    },
+    handleConfirm(data) {
+      this.dialogTableVisible = false
+      this.$notify({
+        title: '选择的数据',
+        message: `一共选择了${data.length}条数据`,
+        duration: 4500,
+        type: 'success'
+      })
+    },
+    handleCancel() {
+      this.dialogTableVisible = false
     }
   }
 }

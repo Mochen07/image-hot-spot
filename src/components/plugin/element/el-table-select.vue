@@ -1,15 +1,18 @@
 <!--
 @Description: 封装element table select组件
-@Last-edit-date: 2019.11.14
+@Last-edit-date: 2019.11.16
 @Easy o.o <<<<<<<
-<ElTableC
+<ElTableSelect
   :columns="tableColumns"
   :data="tableData"
   :operation="['check']"
-  :operation-custom-length="2"
+  :is-selection="true"
+  :page-size="5"
   :total="total"
-  @handleCheck="handleCheck"
+  :judgeValue="'index'"
   @handleCurrentChange="handleCurrentChange"
+  @handleConfirm="handleConfirm"
+  @handleCancel="handleCancel"
 />
 -->
 <template>
@@ -112,6 +115,15 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
+
+    <el-row class="el-row-select">
+      <el-col :offset="18" :span="3" class="el-col-select">
+        <el-button type="primary" size="small" @click="handleConfirm">确定</el-button>
+      </el-col>
+      <el-col :span="3" class="el-col-select">
+        <el-button size="small" @click="handleCancel">取消</el-button>
+      </el-col>
+    </el-row>
   </section>
 </template>
 
@@ -147,6 +159,11 @@ export default {
     operationCustomLength: {
       type: Number,
       default: 0
+    },
+    // 回显判别值的name
+    judgeValue: {
+      required: true,
+      type: String
     },
 
     /*
@@ -187,6 +204,7 @@ export default {
       getRowKeys(row) {
         return row.index
       },
+      cacheCurrentPage: 1,
       cacheSelectData: []
     }
   },
@@ -195,6 +213,9 @@ export default {
     fixedWidth() {
       return this.operationCustomLength ? this.operationCustomLength * 110 - 5 : this.operation.length * 110 - 5
     }
+  },
+  mounted() {
+    this.cacheCurrentPage = this.currentPage
   },
   methods: {
     /*
@@ -245,12 +266,13 @@ export default {
     },
     // 单个选中事件
     handleSelect(list) {
-      this.cacheSelectData[this.currentPage] = list
+      this.cacheSelectData[this.cacheCurrentPage] = list
       this.$emit('handleSelect', list)
     },
     // 全选事件
     handleSelectAll(list) {
-      this.cacheSelectData[this.currentPage] = list
+      // 防止指针错乱
+      this.cacheSelectData[this.cacheCurrentPage] = list.length ? list : null
       this.$emit('handleSelect', list)
     },
     // 单行选中
@@ -261,11 +283,12 @@ export default {
     clearSelection() {
       this.$refs.tableGroup.clearSelection()
     },
+    // 分页选择回显
     echoSelection(currentPageSelectList) {
       if (currentPageSelectList) {
         const _list = this.data.filter(row => {
           return currentPageSelectList.some(item => {
-            return item.index === row.index
+            return item[this.judgeValue] === row[this.judgeValue]
           })
         })
         _list.forEach(row => {
@@ -284,11 +307,28 @@ export default {
     },
     handleCurrentChange(page) {
       this.$emit('handleCurrentChange', page)
-      // !!!!
-      this.currentPage = page
+      this.cacheCurrentPage = page
+      // 等待表格数据回显
       setTimeout(() => {
         this.echoSelection(this.cacheSelectData[page])
       }, 500)
+    },
+
+    /*
+    * 按钮
+    * */
+    // 确定
+    handleConfirm() {
+      // 所有选中的数据
+      const _AllSelectData = [].concat(...this.cacheSelectData).filter((item) => {
+        return item !== null && typeof item === 'object'
+      })
+      this.$emit('handleConfirm', _AllSelectData)
+    },
+    // 取消
+    handleCancel() {
+      delete this.cacheSelectData
+      this.$emit('handleCancel')
     }
   }
 }
@@ -296,10 +336,15 @@ export default {
 
 <style scoped lang="scss" ref="stylesheet/scss">
   .el-table-container{
-    padding-bottom: 5em;
     .el-pagination-c{
       float: right;
       margin-top: 1.5em;
+    }
+    .el-row-select{
+      padding-top: 6em;
+      .el-col-select{
+        text-align: center;
+      }
     }
   }
 </style>

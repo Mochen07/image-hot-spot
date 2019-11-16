@@ -1,6 +1,6 @@
 <!--
 @Description: 封装element table组件
-@Last-edit-date: 2019.11.14
+@Last-edit-date: 2019.11.15
 @Easy o.o <<<<<<<
 <ElTableMain
   :columns="tableColumns"

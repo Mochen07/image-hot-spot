@@ -325,11 +325,13 @@ export default {
       })
       this.$emit('handleConfirm', _AllSelectData)
       this.cacheSelectData = []
+      this.clearSelection()
     },
     // 取消
     handleCancel() {
       this.cacheSelectData = []
       this.$emit('handleCancel')
+      this.clearSelection()
     }
   }
 }

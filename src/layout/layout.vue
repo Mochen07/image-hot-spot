@@ -2,7 +2,10 @@
   <div id="layout" class="layout">
     <el-container style="height: 100vh; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu :default-openeds="['1']">
+        <el-menu
+          default-active="0"
+          :default-openeds="['1']"
+        >
           <el-menu-item index="0" @click="routerLinks('/')">
             <i class="el-icon-s-home" />
             <span slot="title">home</span>
@@ -80,6 +83,7 @@ export default {
     }
   }
   .el-header {
+    width: 100%;
     font-size: 12px;
     background-color: #B3C0D1;
     color: #333;

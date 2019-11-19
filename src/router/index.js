@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/views/Layout'
+import Layout from '@/layout/layout'
+import featureRouter from './modules/feature'
+import elementRouter from './modules/element'
 
 Vue.use(Router)
 
@@ -16,17 +18,7 @@ export default new Router({
       name: 'preview',
       component: () => import('@/components/HotspotImage/Main/ShowPage.vue')
     },
-    {
-      path: '/test',
-      name: 'test',
-      component: () => import('@/views/test/test.vue'),
-      children: [
-        {
-          path: 'el-table-main',
-          name: 'el-table-main',
-          component: () => import('@/views/test/pages/el-table-main.vue')
-        }
-      ]
-    }
+    featureRouter,
+    elementRouter
   ]
 })

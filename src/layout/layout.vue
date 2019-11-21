@@ -18,7 +18,7 @@
             <el-menu-item index="1-1" @click="routerLinks('/feature/image-hot-area')">
               Image Hot Area
             </el-menu-item>
-            <el-menu-item index="1-1" @click="addTabsView">
+            <el-menu-item index="1-2" @click="addTabsView">
               Tabs View
             </el-menu-item>
           </el-submenu>
@@ -27,7 +27,7 @@
               <i class="el-icon-message" />
               <span>Element</span>
             </template>
-            <el-menu-item index="1-1" @click="routerLinks('/element/table')">
+            <el-menu-item index="2-1" @click="routerLinks('/element/table')">
               Table
             </el-menu-item>
           </el-submenu>

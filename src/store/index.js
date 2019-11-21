@@ -13,10 +13,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {})
 
 const store = new Vuex.Store({
-  modules,
-  state: {
-    state: 'test'
-  }
+  modules
 })
 
 export default store

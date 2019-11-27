@@ -36,8 +36,11 @@
 
       <el-container>
         <el-header>
-          <TagsView />
+          Header
         </el-header>
+
+        <!--页面标签栏-->
+        <TagsView />
 
         <el-main>
           <router-view />
@@ -60,6 +63,7 @@ export default {
     },
     addTabsView() {
       console.log('作弊添加TabsView')
+      this.$router.push(`/feature/${new Date() + Math.floor(Math.random() * 100)}`)
     }
   }
 }

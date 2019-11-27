@@ -11,11 +11,11 @@ export default new Router({
     {
       path: '/',
       name: 'layout',
+      meta: { title: 'Home', noCache: true, affix: true },
       component: Layout
     },
     {
       path: '/preview',
-      name: 'preview',
       component: () => import('@/components/HotspotImage/Main/ShowPage.vue')
     },
     featureRouter,

@@ -1,6 +1,7 @@
 <template>
   <div class="el-table-container">
-    <el-table-main />
+    <el-table-main-view />
+    <el-table-select-view />
   </div>
 </template>
 
@@ -19,5 +20,12 @@ export default {
 </script>
 
 <style scoped lang="scss" ref="stylesheet/scss">
-.el-table-container{}
+.el-table-container{
+  &>div{
+    margin-top: 20px;
+  }
+  &>div:first-of-type{
+    margin-top: 0;
+  }
+}
 </style>

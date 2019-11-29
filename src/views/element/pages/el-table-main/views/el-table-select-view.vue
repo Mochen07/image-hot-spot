@@ -1,5 +1,13 @@
 <template>
   <div class="el-table-select-view">
+    <el-card>
+      <div slot="header">
+        <span>分页多选表格</span>
+      </div>
+      <el-button type="text" @click="handlePopup">
+        弹出
+      </el-button>
+    </el-card>
     <el-dialog title="学生成绩" :visible.sync="dialogTableVisible">
       <ElTableSelect
         :columns="tableColumns"
@@ -18,8 +26,10 @@
 </template>
 
 <script>
+import ElTableSelect from '@/components/plugin/element/table/el-table-select'
 export default {
   name: 'ElTableSelectView',
+  components: { ElTableSelect },
   data() {
     return {
       total: 0,
@@ -47,7 +57,8 @@ export default {
           label: '备注'
         }
       ],
-      tableData: []
+      tableData: [],
+      totalData: []
     }
   },
   mounted() {
@@ -77,19 +88,20 @@ export default {
       }
     ]
     for (let i = 0; i < 7; i++) {
-      for (const j in b) {
-        a.push(b[j])
-      }
+      a.push(...b)
     }
     this.totalData = JSON.parse(JSON.stringify(a))
     this.totalData.forEach((item, index) => {
       item.index = index + 1
     })
     this.total = this.totalData.length
-    // 模拟数据
-    this.handleCurrentChange(1)
   },
   methods: {
+    handlePopup() {
+      // 模拟数据
+      this.dialogTableVisible = true
+      this.handleCurrentChange(1)
+    },
     handleCurrentChange(page) {
       this.$message.success(`当前第${page}页面`)
       const a = JSON.parse(JSON.stringify(this.totalData))
@@ -103,6 +115,7 @@ export default {
         duration: 4500,
         type: 'success'
       })
+      console.log(data)
     },
     handleCancel() {
       this.dialogTableVisible = false

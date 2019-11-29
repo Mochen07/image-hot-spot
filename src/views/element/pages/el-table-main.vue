@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       total: 0,
-      dialogTableVisible: true,
+      dialogTableVisible: false,
       tableColumns: [
         {
           prop: 'index',

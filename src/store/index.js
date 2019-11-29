@@ -13,7 +13,10 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {})
 
 const store = new Vuex.Store({
-  modules
+  modules,
+  state: {
+    imgDemoUrl: 'http://img4.imgtn.bdimg.com/it/u=3404138371,2236112659&fm=26&gp=0.jpg'
+  }
 })
 
 export default store

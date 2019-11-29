@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import ElTableMain from '@/components/plugin/element/el-table-main'
-import ElTableSelect from '@/components/plugin/element/el-table-select'
+import ElTableMain from '@/components/plugin/element/table/el-table-main'
+import ElTableSelect from '@/components/plugin/element/table/el-table-select'
 export default {
   name: 'Container',
   components: {

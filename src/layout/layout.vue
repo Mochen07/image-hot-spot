@@ -23,18 +23,7 @@
 import { TagsView, Aside } from './components'
 export default {
   name: 'Layout',
-  components: { TagsView, Aside },
-  methods: {
-    routerLinks(path) {
-      if (this.$route.path !== path) {
-        this.$router.push(path)
-      }
-    },
-    addTabsView() {
-      console.log('作弊添加TabsView')
-      this.$router.push(`/feature/${new Date() + Math.floor(Math.random() * 100)}`)
-    }
-  }
+  components: { TagsView, Aside }
 }
 </script>
 
@@ -66,7 +55,7 @@ export default {
   .el-header {
     width: 100%;
     font-size: 12px;
-    background-color: #B3C0D1;
+    background-color: #dddd;
     color: #333;
     line-height: 60px;
   }

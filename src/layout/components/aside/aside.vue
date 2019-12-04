@@ -40,7 +40,18 @@
 
 <script>
 export default {
-  name: 'Aside'
+  name: 'Aside',
+  methods: {
+    routerLinks(path) {
+      if (this.$route.path !== path) {
+        this.$router.push(path)
+      }
+    },
+    addTabsView() {
+      console.log('作弊添加TabsView')
+      this.$router.push(`/feature/${new Date() + Math.floor(Math.random() * 100)}`)
+    }
+  }
 }
 </script>
 

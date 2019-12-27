@@ -1,5 +1,6 @@
 <template>
-  <div id="tags-view-container" class="tags-view-container" @wheel.native.prevent="handleScroll">
+  <div id="tags-view-container" class="tags-view-container">
+    <!--@wheel.native.prevent="handleScroll"-->
     <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link
         v-for="tag in visitedViews"
@@ -15,9 +16,18 @@
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
+      <li @click="refreshSelectedTag(selectedTag)">
+        刷新
+      </li>
+      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">
+        关闭
+      </li>
+      <li @click="closeOthersTags(selectedTag)">
+        关闭其他
+      </li>
+      <li @click="closeAllTags">
+        关闭所有
+      </li>
     </ul>
   </div>
 </template>
@@ -109,6 +119,27 @@ export default {
     closeMenu() {
       console.log('关闭菜单')
       this.visible = false
+    },
+    refreshSelectedTag(view) {
+      const { fullPath } = view
+      this.$nextTick(() => {
+        this.$router.replace({
+          path: '/redirect' + fullPath
+        })
+      })
+    },
+    closeOthersTags(view) {
+      this.$store.dispatch('tagsView/delOthersVisitedViews', view).then((visitedViews) => {
+        this.toLastView(visitedViews, view)
+      })
+    },
+    closeAllTags(view) {
+      this.$store.dispatch('tagsView/delAllVisitedViews').then((visitedViews) => {
+        // if (this.affixTags.some(tag => tag.path === view.path)) {
+        //   return
+        // }
+        this.toLastView(visitedViews, view)
+      })
     }
   }
 }

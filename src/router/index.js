@@ -9,6 +9,17 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/redirect',
+      component: Layout,
+      hidden: true,
+      children: [
+        {
+          path: '/redirect/:path*',
+          component: () => import('@/views/redirect/index')
+        }
+      ]
+    },
+    {
       path: '/',
       name: 'layout',
       meta: { title: 'Home', noCache: true, affix: true },

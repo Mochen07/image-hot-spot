@@ -33,7 +33,7 @@ export default {
 <style scoped lang="scss" ref="stylesheet/scss">
 .emoji-container {
 	width: 19em;
-	height: 270px;
+	height: 13.5em;
 	background-color: #fff;
 	overflow-y: scroll;
 	border: 1px solid #d9d9d9;

@@ -13,6 +13,13 @@ const featureRouter = {
       name: 'ImageHotArea',
       meta: { title: 'ImageHotArea', noCache: true }
     },
+    // 表情
+    {
+      path: 'emoji',
+      name: 'Emoji',
+      meta: { title: 'Emoji', noCache: true },
+      component: () => import('@/views/feature/emoji')
+    },
     // 标签栏测试空页面
     {
       path: ':date',

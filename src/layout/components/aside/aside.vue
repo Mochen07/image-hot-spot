@@ -74,6 +74,10 @@ export default {
               path: '/feature/TabsView',
               name: 'Tabs View',
               method: this.addTabsView
+            },
+            {
+              path: '/feature/emoji',
+              name: 'Emoji'
             }
           ]
         },

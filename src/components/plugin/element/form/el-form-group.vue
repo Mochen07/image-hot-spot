@@ -1,6 +1,13 @@
 <template>
   <div class="el-form-group">
-    <el-form ref="validForm" :model="formData" :rules="formRules" :label-width="labelWidth + 'px'">
+    <el-form
+      ref="validForm"
+      :inline="inline"
+      :size="size"
+      :model="formData"
+      :rules="formRules"
+      :label-width="labelWidth + 'px'"
+    >
       <!--eslint-disable-->
       <el-form-item
         v-for="(item,index) in formItemList"
@@ -107,7 +114,7 @@
           :value-format="item.valueFormat || 'yyyy-MM-dd'"
           type="date"
           size="small"
-          placeholder="入职日期"
+          :placeholder="item.placeholder"
         />
 
         <ElImgUpload
@@ -149,6 +156,14 @@ export default {
     labelWidth: {
       type: Number,
       default: 120
+    },
+    inline: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      default: 'small'
     },
     // 验证规则，参考element
     formRules: {

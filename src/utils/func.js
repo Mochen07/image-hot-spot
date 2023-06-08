@@ -30,3 +30,14 @@ export const scrollAnimation = (id, offset = 0) => {
     }
   }, x)
 }
+
+// 复制
+export const handleCopy = function (data, callback) {
+  let transferInput = document.createElement("input")
+  transferInput.value = data
+  document.body.appendChild(transferInput)
+  transferInput.select();
+  document.execCommand("Copy")
+  callback&&callback()
+  transferInput.remove()
+}

@@ -1,6 +1,8 @@
 <template>
   <div class="emoji">
     <EmojiBox
+      width="auto"
+      height="370px"
       @skinChange="skinChange"
     />
   </div>
@@ -8,15 +10,18 @@
 
 <script>
 import EmojiBox from '@/components/plugin/emoji/emoji'
+import { handleCopy } from '@/utils/func.js'
 export default {
   name: 'Emoji',
   components: { EmojiBox },
   methods: {
     skinChange(item) {
-      this.$notify({
-        title: '表情',
-        message: item,
-        type: 'success'
+      handleCopy(item, () => {
+        this.$notify({
+          title: '复制成功',
+          message: item,
+          type: 'success'
+        })
       })
     }
   }

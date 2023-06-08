@@ -1,5 +1,5 @@
 <template>
-  <div class="emoji-container">
+  <div class="emoji-container" :style="`width: ${width}; height: ${height}`">
     <div class="emoji-content">
       <span
         v-for="item in emojiData"
@@ -17,6 +17,16 @@
 import EmojiData from './native-emoji'
 export default {
   name: 'EmojiContainer',
+  props: {
+    width: {
+      type: String,
+      default: '19em'
+    },
+    height: {
+      type: String,
+      default: '270px'
+    }
+  },
   data() {
     return {
       emojiData: EmojiData
@@ -32,8 +42,6 @@ export default {
 
 <style scoped lang="scss" ref="stylesheet/scss">
 .emoji-container {
-	width: 19em;
-	height: 13.5em;
 	background-color: #fff;
 	overflow-y: scroll;
 	border: 1px solid #d9d9d9;

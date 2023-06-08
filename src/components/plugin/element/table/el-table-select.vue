@@ -36,6 +36,7 @@
         type="selection"
         align="center"
         width="55"
+        :selectable="isCheckbox"
       />
 
       <!-- 展示列 -->
@@ -197,6 +198,13 @@ export default {
     layout: {
       type: String,
       default: 'prev, pager, next, jumper'
+    },
+    // 判断选择是否禁用
+    isCheckbox: {
+      type: Function,
+      default: (row, index) => {
+        return true
+      }
     }
   },
   data() {

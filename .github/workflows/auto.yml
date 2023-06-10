@@ -14,6 +14,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.4.1
         with:
           ssh: true
+          branch: master
         env:
           ACCESS_TOKEN: ${{ secrets.MOCHEN_TOKEN }}
           BRANCH: gh-pages

@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@3.4.1
+        uses: JamesIves/github-pages-deploy-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.MOCHEN_TOKEN }}
           BRANCH: gh-pages

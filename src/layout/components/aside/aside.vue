@@ -78,6 +78,10 @@ export default {
             {
               path: '/feature/emoji',
               name: 'Emoji'
+            },
+            {
+              path: '/feature/yapi-to-typescript-format',
+              name: 'YapiTSFormat'
             }
           ]
         },

@@ -20,6 +20,13 @@ const featureRouter = {
       meta: { title: 'Emoji', noCache: true },
       component: () => import('@/views/feature/emoji')
     },
+    // yapi-to-typescript 文件格式化
+    {
+      path: 'yapi-to-typescript-format',
+      name: 'YapiToTypeScriptFormat',
+      meta: { title: 'YapiToTypeScriptFormat', noCache: true },
+      component: () => import('@/views/feature/yapi-to-typescript-format')
+    },
     // 标签栏测试空页面
     {
       path: ':date',
